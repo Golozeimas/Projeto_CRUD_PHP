@@ -1,5 +1,16 @@
 <?php
-include "conexao.php";
+
+if(isset($_POST)){
+   $nome = $_POST['nome'];
+   $email = $_POST['email'];
+   $data_nascimento = $_POST['data_nascimento'];
+   $telefone = $_POST['telefone'];
+
+   if(empty($nome)){
+        echo "<p>nome vazio</p>";
+   }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
