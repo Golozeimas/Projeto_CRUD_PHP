@@ -7,6 +7,10 @@ $email = $_POST["email"];
 $data_nascimento = $_POST["data_nascimento"];
 $telefone = $_POST["telefone"];
 
+function limparTelefone($str){
+    return preg_replace("/[^0-9]/","",$str);
+}
+
 
 if(isset($_POST)){
 
@@ -17,13 +21,41 @@ if(isset($_POST)){
     if(empty($email)){
         $erro = "Insira um e-mail para continuar!";
     }
-    if(empty($data_nascimento)){
+    if(empty($data_nascimento)){ // dados obrigatórios
         $erro = "Insira a sua data de nascimento";
     }
     if($erro){ // vai se tornar verdadeiro, se entrar em alguns dos blocos acima
         // echo "<p><b>ERRO:$erro</b></p>";
     } else{
         $sucesso = "Os dados foram enviado com sucesso!";
+        if(!empty($data_nascimento)){
+            $temp = explode("/", $data_nascimento);
+            if(count($temp) == 3){
+            // explode, tira os '/', fica assim (21,10,2005)
+            // array_reverse, reverte fica assim 2005,10,21
+            // implode, junta os arrays com um separador, '2005-10-21'
+            $formatar_americano = implode("-",array_reverse($temp));
+            $data_nascimento = $formatar_americano; 
+            }else{
+                $erro = "A data de nascimento deve ser seguida, dia/mês/ano";
+                $sucesso = null;
+            }
+        }
+        if(!empty($telefone)){
+            $telefone = limparTelefone($telefone);
+        }elseif(strlen($telefone) != 11){
+                    $erro = "digite o telefone, seguindo o padrão desejado, (00) 00000-0000";
+                    $sucesso = null;
+                    }
+        
+        if(!empty($email)){
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $email = $email;
+            }else{
+                $erro = "o e-mail -> $email não é valido";
+                $sucesso = null;
+            }
+        }
     }
 }
 ?>
@@ -44,7 +76,7 @@ if(isset($_POST)){
                             <br>
                             <input type="text" name="nome" class="form-control">
                     </div>
-                     <br>
+                    <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
@@ -54,13 +86,13 @@ if(isset($_POST)){
                     <div class="col">
                             <label for="">Data de nascimento:</label>
                             <br>
-                            <input type="date" name="data_nascimento" class="form-control">
+                            <input type="text"placeholder="(dia/mês/ano)" name="data_nascimento" class="form-control" >
                     </div>
                     <br>
                     <div class="col">
                         <label for=""> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" class="form-control">
+                        <input type="text" name="telefone" placeholder="(99) 91111-1111" class="form-control">
                     </div>
                     <br>
                     <?php if ($erro) { ?>
@@ -69,7 +101,7 @@ if(isset($_POST)){
                     </div>
                     <?php } ?>
                     <?php if($sucesso) {?>
-                         <div class="alert alert-success">
+                        <div class="alert alert-success">
                         <?php echo $sucesso?>
                     </div>
                     <?php }?>
