@@ -32,7 +32,7 @@ CREATE TABLE `clientes` (
   `data_nascimento` date NOT NULL,
   `email` varchar(50) NOT NULL,
   `telefone` varchar(11) DEFAULT NULL,
-  `nome` int(50) NOT NULL,
+  `nome` varchar(50) NOT NULL,
   `data_cadastro` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -14,6 +14,8 @@ function limparTelefone($str){
 
 if(isset($_POST)){
 
+    include ("conexao.php");
+
     if(empty($nome)){
         $erro = "Insira um nome para continuar!"; // se entrar aqui vira verdadeiro
     }
@@ -27,13 +29,12 @@ if(isset($_POST)){
     if($erro){ // vai se tornar verdadeiro, se entrar em alguns dos blocos acima
         // echo "<p><b>ERRO:$erro</b></p>";
     } else{
-        $sucesso = "Os dados foram enviado com sucesso!";
         if(!empty($data_nascimento)){
-            $temp = explode("/", $data_nascimento);
-            if(count($temp) == 3){
             // explode, tira os '/', fica assim (21,10,2005)
             // array_reverse, reverte fica assim 2005,10,21
             // implode, junta os arrays com um separador, '2005-10-21'
+            $temp = explode("/", $data_nascimento);
+            if(count($temp) === 3){
             $formatar_americano = implode("-",array_reverse($temp));
             $data_nascimento = $formatar_americano; 
             }else{
@@ -56,6 +57,25 @@ if(isset($_POST)){
                 $sucesso = null;
             }
         }
+
+        if($erro){
+        }else{ // caso seja diferente de erro, vai entrar no bloco de código
+
+            $sql_query = "INSERT INTO clientes (nome,email,telefone,data_nascimento,data_cadastro) VALUES ('$nome', '$email', '$telefone', 
+            '$data_nascimento', NOW())";
+
+            $dados_enviados = $mysqli -> query($sql_query) or die($mysqli->error); 
+            // a conexão chama o mysqli e podemos usar no formato orientado ou funcional
+
+            if($dados_enviados){
+                $sucesso = "Os dados foram enviado com sucesso!";
+                unset($_POST); // limpa o formulário
+            } else{
+                $sucesso = null;
+                $erro = "dados não foram enviados!";
+            }
+
+        }
     }
 }
 ?>
@@ -74,25 +94,25 @@ if(isset($_POST)){
                     <div class="col">
                             <label for="nome">Nome: </label>
                             <br>
-                            <input type="text" name="nome" class="form-control">
+                            <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>" name="nome" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
-                            <input type="text" name="email" class="form-control">
+                            <input type="text" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>" name="email" class="form-control">
                     </div>
                     <br>
                     <div class="col">
-                            <label for="">Data de nascimento:</label>
+                            <label for="data_nascimento">Data de nascimento:</label>
                             <br>
-                            <input type="text"placeholder="(dia/mês/ano)" name="data_nascimento" class="form-control" >
+                            <input type="text" value="<?php if(isset($_POST['data_nascimento'])) echo $_POST['data_nascimento']?>" placeholder="dia/mês/ano" name="data_nascimento" class="form-control" >
                     </div>
                     <br>
                     <div class="col">
-                        <label for=""> Telefone: </label>
+                        <label for="telefone"> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" placeholder="(99) 91111-1111" class="form-control">
+                        <input type="text" name="telefone" value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']?>" placeholder="(99) 91111-1111" class="form-control">
                     </div>
                     <br>
                     <?php if ($erro) { ?>
