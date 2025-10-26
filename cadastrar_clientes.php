@@ -91,37 +91,26 @@ if(count($_POST) > 0){
                     <div class="col">
                             <label for="nome">Nome: </label>
                             <br>
-                            <input type="text" value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>" name="nome" class="form-control">
+                            <input type="text" name="nome" class="form-control">
                     </div>
-                    <br>
+                     <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
-                            <input type="text" value="<?php if(isset($_POST['email'])) echo $_POST['email']?>" name="email" class="form-control">
+                            <input type="text" name="email" class="form-control">
                     </div>
                     <br>
                     <div class="col">
-                            <label for="data_nascimento">Data de nascimento:</label>
+                            <label for="">Data de nascimento:</label>
                             <br>
-                            <input type="text" value="<?php if(isset($_POST['data_nascimento'])) echo $_POST['data_nascimento']?>" placeholder="dia/mês/ano" name="data_nascimento" class="form-control" >
+                            <input type="date" name="data_nascimento" class="form-control">
                     </div>
                     <br>
                     <div class="col">
-                        <label for="telefone"> Telefone: </label>
+                        <label for=""> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']?>" placeholder="(99) 91111-1111" class="form-control">
+                        <input type="text" name="telefone" class="form-control">
                     </div>
-                    <br>
-                    <?php if ($erro) { ?>
-                    <div class="alert alert-danger">
-                        <?php echo $erro ?>
-                    </div>
-                    <?php } ?>
-                    <?php if($sucesso) {?>
-                        <div class="alert alert-success">
-                        <?php echo $sucesso?>
-                    </div>
-                    <?php }?>
                     <br>
                     <div class="col align-items-center justify-content-center d-flex">
                         <button class="btn btn-primary" type="submit">
