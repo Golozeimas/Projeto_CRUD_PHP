@@ -1,29 +1,26 @@
 <?php
+include ("conexao.php");
 
 $sucesso = false;
 $erro = false;
-$nome = $_POST["nome"];
-$email = $_POST["email"];
-$data_nascimento = $_POST["data_nascimento"];
-$telefone = $_POST["telefone"];
 
 function limparTelefone($str){
     return preg_replace("/[^0-9]/","",$str);
 }
 
-
-if(isset($_POST)){
-
-    include ("conexao.php");
-
+if(count($_POST) > 0){
+    
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $data_nascimento = $_POST["data_nascimento"];
+    $telefone = $_POST["telefone"];
     if(empty($nome)){
         $erro = "Insira um nome para continuar!"; // se entrar aqui vira verdadeiro
     }
-    
-    if(empty($email)){
+    elseif(empty($email)){
         $erro = "Insira um e-mail para continuar!";
     }
-    if(empty($data_nascimento)){ // dados obrigatórios
+    elseif(empty($data_nascimento)){ // dados obrigatórios
         $erro = "Insira a sua data de nascimento";
     }
     if($erro){ // vai se tornar verdadeiro, se entrar em alguns dos blocos acima
@@ -89,7 +86,7 @@ if(isset($_POST)){
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100dvh;">
             <div class="d-block p-3 m-2 row" style="height: 400px; width: 300px;">
-                <form method="POST">
+                <form method="POST" action="lista_de_clientes.php" >
                 <div class="form-row">
                     <div class="col">
                             <label for="nome">Nome: </label>
