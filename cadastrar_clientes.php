@@ -82,7 +82,7 @@ if(count($_POST) > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Cadastro de clientes </title>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100dvh;">
             <div class="d-block p-3 m-2 row" style="height: 400px; width: 300px;">
@@ -93,7 +93,7 @@ if(count($_POST) > 0){
                             <br>
                             <input type="text" name="nome" class="form-control">
                     </div>
-                     <br>
+                    <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
