@@ -18,7 +18,7 @@ $numero_de_clientes = $query_clientes -> num_rows; // retorna quantas linhas tem
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <a href="cadastrar_clientes.php" class="link-dark text-decoration-none m-2"> Voltar</a>
+    <a href="cadastrar_clientes.php" class="link-dark text-decoration-none m-2 text-white btn btn-primary rounded"> Voltar</a>
     <br>
     <div class="container bg-success text-white p-4 rounded rounded-4 align-items-center justify-content-center d-flex">
         <h1>Lista de clientes cadastrados</h1>

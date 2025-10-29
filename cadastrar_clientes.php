@@ -91,29 +91,29 @@ if(count($_POST) > 0){
                     <div class="col">
                             <label for="nome">Nome: </label>
                             <br>
-                            <input type="text" name="nome" class="form-control">
+                            <input type="text" name="nome" required class="form-control">
                     </div>
                     <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
-                            <input type="text" name="email" class="form-control">
+                            <input type="text" name="email" class="form-control" required>
                     </div>
                     <br>
                     <div class="col">
                             <label for="">Data de nascimento:</label>
                             <br>
-                            <input type="date" name="data_nascimento" class="form-control">
+                            <input type="date" name="data_nascimento" required class="form-control">
                     </div>
                     <br>
                     <div class="col">
                         <label for=""> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" class="form-control">
+                        <input type="text" name="telefone" required class="form-control">
                     </div>
                     <br>
                     <div class="col align-items-center justify-content-center d-flex">
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-primary" type="submit" >
                             Enviar dados
                         </button>
                     </div>
