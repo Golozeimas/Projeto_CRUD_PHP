@@ -61,12 +61,16 @@ if(count($_POST) > 0){
             $sql_query = "INSERT INTO clientes (nome,email,telefone,data_nascimento,data_cadastro) VALUES ('$nome', '$email', '$telefone', 
             '$data_nascimento', NOW())";
 
+            // envia os dados para o banco de dados
             $dados_enviados = $mysqli -> query($sql_query) or die($mysqli->error); 
-            // a conexão chama o mysqli e podemos usar no formato orientado ou funcional
 
+            // a conexão chama o mysqli e podemos usar no formato orientado ou funcional
             if($dados_enviados){
                 $sucesso = "Os dados foram enviado com sucesso!";
                 unset($_POST); // limpa o formulário
+                sleep(5);
+                header("Location: lista_de_clientes.php");
+                exit;
             } else{
                 $sucesso = null;
                 $erro = "dados não foram enviados!";
@@ -86,39 +90,51 @@ if(count($_POST) > 0){
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100dvh;">
             <div class="d-block p-3 m-2 row" style="height: 400px; width: 300px;">
-                <form method="POST" action="lista_de_clientes.php" >
+                <form method="POST" >
                 <div class="form-row">
                     <div class="col">
                             <label for="nome">Nome: </label>
                             <br>
-                            <input type="text" name="nome" required class="form-control">
+                            <input type="text" name="nome" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
-                            <input type="text" name="email" class="form-control" required>
+                            <input type="text" name="email" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                             <label for="">Data de nascimento:</label>
                             <br>
-                            <input type="date" name="data_nascimento" required class="form-control">
+                            <input type="text" name="data_nascimento" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                         <label for=""> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" required class="form-control">
+                        <input type="text" name="telefone" class="form-control">
                     </div>
                     <br>
                     <div class="col align-items-center justify-content-center d-flex">
-                        <button class="btn btn-primary" type="submit" >
+                        <button class="btn btn-primary"  type="submit" >
                             Enviar dados
                         </button>
                     </div>
                 </div>
                 </form>
+                <br>
+                <?php if($erro) { ?>
+                <div class="alert alert-danger">
+                    <?php echo $erro; ?>
+                </div>
+                <?php }  ?>
+                <?php if($sucesso) { ?>
+                <div class="alert alert-success">
+                    <?php echo $sucesso; ?>
+                </div>
+                <?php }  ?>
+            </div>
             </div>
         </body>
 
