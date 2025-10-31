@@ -89,7 +89,7 @@ if(count($_POST) > 0){
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="d-flex justify-content-center align-items-center" style="height: 100dvh;">
-            <div class="d-block p-3 m-2 row" style="height: 400px; width: 300px;">
+            <div class="d-block p-3 m-2 row" style="height: 400px; width: 400px;">
                 <form method="POST" >
                 <div class="form-row">
                     <div class="col">
