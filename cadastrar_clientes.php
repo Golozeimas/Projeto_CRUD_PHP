@@ -23,9 +23,7 @@ if(count($_POST) > 0){
     elseif(empty($data_nascimento)){ // dados obrigatórios
         $erro = "Insira a sua data de nascimento";
     }
-    if($erro){ // vai se tornar verdadeiro, se entrar em alguns dos blocos acima
-        // echo "<p><b>ERRO:$erro</b></p>";
-    } else{
+    else{
         if(!empty($data_nascimento)){
             // explode, tira os '/', fica assim (21,10,2005)
             // array_reverse, reverte fica assim 2005,10,21
