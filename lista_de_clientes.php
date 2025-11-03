@@ -62,19 +62,14 @@ $numero_de_clientes = $query_clientes -> num_rows; // retorna quantas linhas tem
             </tr>
             <?php } else {
                 while($cliente = $query_clientes -> fetch_assoc()){
+                    
                     if(!empty($cliente["telefone"])){
-                        $ddd = substr($cliente["telefone"], 0, 2);
-                        $parte1 = substr($cliente["telefone"],2 , 6 );
-                        $parte2 = substr($cliente["telefone"], 7);
-                        $telefone = "($ddd) $parte1-$parte2";
+                    $telefone = formatar_telefone($cliente["telefone"]);
                     }else{
                         $telefone = "não foi informado o telefone";
                     }
-                    
                     if(!empty($cliente["data_nascimento"])){
-                        $arrays = explode("-",$cliente["data_nascimento"]);
-                        $pos_explode = array_reverse($arrays);
-                        $data_nascimento = implode("/", $pos_explode);
+                        $data_nascimento = formatar_data($cliente["data_nascimento"]);
                     }else{
                         $data_nascimento = "ocorreu algum erro, verifique novamente";
                     }
@@ -88,9 +83,9 @@ $numero_de_clientes = $query_clientes -> num_rows; // retorna quantas linhas tem
             <td><?php echo $data_nascimento?></td>
             <td><?php echo $data_cadastro?></td>
             <td>
-                <a class="link-primary text-decoration-none"  href="editar_cliente.php?=<?php echo $cliente["id"]?>">Editar</a>
+                <a class="link-primary text-decoration-none"  href="editar_cliente.php?id=<?php echo $cliente["id"]?>">Editar</a>
                 <span> | </span>
-                <a class="link-danger text-decoration-none" href="deletar_cliente.php?=<?php echo $cliente["id"]?>">Deletar </a>
+                <a class="link-danger text-decoration-none" href="deletar_cliente.php?id=<?php echo $cliente["id"]?>">Deletar </a>
             </td>
             </tr>
             <?php } 

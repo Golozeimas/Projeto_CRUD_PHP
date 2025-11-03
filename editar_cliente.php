@@ -3,15 +3,17 @@ include ("conexao.php");
 
 $id = intval($_GET["id"]); // função que vai pegar o id do cliente, e formata em número inteiro
 
-$sql_clintes = "SELECT * FROM clientes WHERE id = '$id'";
+$sql_clintes = "SELECT * FROM clientes WHERE id = '$id' ";
 
 $query = $mysqli -> query($sql_clintes) or die($mysqli-> error);
+
+$lista_de_clients = $query -> fetch_assoc();
 
 if(count($_POST) > 0){
     $nome = $_POST["nome"];
     $email = $_POST["email"];
 
-    $query_para_dar_update = "UPDATE clientes SET nome = $nome, email = $email  WHERE id='$id' ";
+    $query_para_dar_update = "UPDATE clientes SET nome = $nome, email = $email  WHERE id = '$id' ";
 
     $update_do_cliente = $mysqli -> query($query_para_dar_update) or die($mysqli -> error);
 }
@@ -29,7 +31,7 @@ if(count($_POST) > 0){
             <form method="POST" class="form-row">
                 <label for="nome">A</label>
                 <br>
-                <input type="text" class="form-control" name="nome">
+                <input type="text" value="<?php echo $lista_de_clients['nome'];?>" class="form-control" name="nome">
                 <br>
                 <div class="col">
                 <label for="email">B</label>
