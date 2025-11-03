@@ -95,25 +95,25 @@ if(count($_POST) > 0){
                     <div class="col">
                             <label for="nome">Nome: </label>
                             <br>
-                            <input type="text" name="nome" class="form-control">
+                            <input type="text" name="nome" value="<?php if(isset($_POST['nome'])) echo $nome;  // mantém o campo se já tiver sido digitado ?>" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                             <label for="email">Email:</label>
                             <br>
-                            <input type="text" name="email" class="form-control">
+                            <input type="text" name="email" value="<?php if(isset($_POST['email'])) echo $email;?>" class="form-control">
                     </div>
                     <br>
                     <div class="col">
-                            <label for="">Data de nascimento:</label>
+                            <label for="data_nascimento"> Data de nascimento: </label>
                             <br>
-                            <input type="text" name="data_nascimento" class="form-control">
+                            <input type="text" name="data_nascimento" value="<?php if(isset($_POST['data_nascimento'])) echo $data_nascimento;?>" class="form-control">
                     </div>
                     <br>
                     <div class="col">
-                        <label for=""> Telefone: </label>
+                        <label for="telefone"> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" class="form-control">
+                        <input type="text" name="telefone" value="<?php if(isset($_POST['telefone'])) echo $telefone ;?>" class="form-control">
                     </div>
                     <br>
                     <div class="col align-items-center justify-content-center d-flex">

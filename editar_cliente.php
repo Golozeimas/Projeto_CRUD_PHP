@@ -1,14 +1,20 @@
 <?php
 include ("conexao.php");
 
-$query_para_selecionar_nomes = "SELECT nome FROM clientes";
+$id = intval($_GET["id"]); // função que vai pegar o id do cliente, e formata em número inteiro
 
-$query = $mysqli -> query($query_para_selecionar_nomes);
+$sql_clintes = "SELECT * FROM clientes WHERE id = '$id'";
+
+$query = $mysqli -> query($sql_clintes) or die($mysqli-> error);
 
 if(count($_POST) > 0){
-    $nome = $_POST; 
-}
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
 
+    $query_para_dar_update = "UPDATE clientes SET nome = $nome, email = $email  WHERE id='$id' ";
+
+    $update_do_cliente = $mysqli -> query($query_para_dar_update) or die($mysqli -> error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +50,7 @@ if(count($_POST) > 0){
                 <br>
                 <div class="col align-items-center justify-content-center d-flex">
                 <button class="btn btn-primary" type="submit"> Atualizar dados</button>
-                </div>
+                </div>      
             </form>
         </div>
 </body>
