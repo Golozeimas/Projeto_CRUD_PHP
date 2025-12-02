@@ -1,7 +1,7 @@
 <?php
-$user = "root";
+$user = "matheus";
 $password ="123456";
-$host = "localhost";
+$host = "127.0.0.1";
 $db = "crud_clientes";
 
 $mysqli = new mysqli($host, $user, $password, $db);
@@ -17,7 +17,7 @@ function formatar_data($data_nascimento){
 
 function formatar_telefone($telefone){
     $ddd = substr($telefone, 0, 2);
-    $parte1 = substr($telefone,2 , 6 );
+    $parte1 = substr($telefone,2 , 5);
     $parte2 = substr($telefone, 7);
     return $telefone = "($ddd) $parte1-$parte2";
 }

@@ -72,9 +72,12 @@ if(count($_POST) > 0){
             
             $dados_atualizados = $mysqli -> query($sql_query) or die($mysqli->error); 
             // a conexão chama o mysqli e podemos usar no formato orientado ou funcional
-            if($dados_atualizados){
+            if($dados_atualizados == true){
                 $sucesso = "Os dados foram atualizados com sucesso!";
                 unset($_POST); // limpa o formulário
+                sleep(5);
+                header("Location: lista_de_clientes.php");
+                exit;
             } else{
                 $sucesso = null;
                 $erro = "dados não foram atualizado!";

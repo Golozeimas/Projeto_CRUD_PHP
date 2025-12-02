@@ -105,13 +105,13 @@ if(count($_POST) > 0){
                     <div class="col">
                             <label for="data_nascimento"> Data de nascimento: </label>
                             <br>
-                            <input type="text" name="data_nascimento" value="<?php if(isset($_POST['data_nascimento'])) echo $data_nascimento;?>" class="form-control">
+                            <input type="text" name="data_nascimento" placeholder="XX/XX/XXXX" value="<?php if(isset($_POST['data_nascimento'])) echo $data_nascimento;?>" class="form-control">
                     </div>
                     <br>
                     <div class="col">
                         <label for="telefone"> Telefone: </label>
                         <br>
-                        <input type="text" name="telefone" value="<?php if(isset($_POST['telefone'])) echo $telefone ;?>" class="form-control">
+                        <input type="text" name="telefone" placeholder="(00) 00000-0000" value="<?php if(isset($_POST['telefone'])) echo $telefone ;?>" class="form-control">
                     </div>
                     <br>
                     <div class="col align-items-center justify-content-center d-flex">
