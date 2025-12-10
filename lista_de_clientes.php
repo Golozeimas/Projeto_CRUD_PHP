@@ -85,7 +85,7 @@ $numero_de_clientes = $query_clientes -> num_rows; // retorna quantas linhas tem
             <td>
                 <a class="link-primary text-decoration-none"  href="editar_cliente.php?id=<?php echo $cliente["id"]?>">Editar</a>
                 <span> | </span>
-                <a class="link-danger text-decoration-none" href="deletar_cliente.php?id=<?php echo $cliente["id"]?>">Deletar </a>
+                <a class="link-danger text-decoration-none" href="deletar_clientes.php?id=<?php echo $cliente["id"]?>">Deletar </a>
             </td>
             </tr>
             <?php } 
